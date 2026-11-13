@@ -48,7 +48,7 @@ Version 0.1, **not yet published** on crates.io or npm: projects created by `mol
 | `crates/moltn-ssr` | Embedded server-side rendering (QuickJS or V8), implements `veer::SsrClient` |
 | `crates/moltn-pages`, `crates/moltn-pages-macros` | File-based routing, `#[page]` loaders, TypeScript generation, `moltn.toml` |
 | `crates/moltn-toolchain` | Detects and drives the JavaScript toolchain |
-| `crates/moltn` | The `moltn` command |
+| `crates/moltn-cli` | The `moltn` command |
 | `packages/vite` | `@moltn/vite`, the Vite plugin that builds the server-side rendering bundle |
 | `examples/` | axum with Vue, React and Svelte; Loco with Vue |
 | `guide/` | User guide, English and French (the documentation site) |
@@ -62,7 +62,7 @@ Requires Rust 1.99 and Node 22 or later with pnpm.
 pnpm install
 pnpm -r build                              # npm package, example frontends, guide
 cargo test --workspace --all-features      # after `pnpm -r build`
-cargo install --path crates/moltn          # installs the `moltn` command
+cargo install --path crates/moltn-cli          # installs the `moltn` command
 ```
 
 ## License

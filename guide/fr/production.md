@@ -26,7 +26,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && apt-get install
  && npm install -g pnpm
 WORKDIR /app
 COPY . .
-RUN cargo install --path /chemin/vers/moltn/crates/moltn && moltn build
+RUN cargo install --path /chemin/vers/moltn/crates/moltn-cli && moltn build
 
 FROM debian:bookworm-slim
 COPY --from=build /app/target/release/mon-app /usr/local/bin/mon-app

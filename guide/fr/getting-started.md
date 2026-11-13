@@ -13,7 +13,7 @@ Pour vérifier ce que moltn trouve sur votre machine, lancez `moltn doctor` dans
 Depuis le dépôt moltn :
 
 ```bash
-cargo install --path crates/moltn
+cargo install --path crates/moltn-cli
 ```
 
 La commande est installée dans `~/.cargo/bin`, déjà présent dans votre `PATH` si vous utilisez rustup.

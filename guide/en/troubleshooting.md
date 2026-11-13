@@ -5,7 +5,7 @@
 The CLI is not installed, or `~/.cargo/bin` is not on the `PATH`:
 
 ```bash
-cargo install --path crates/moltn   # from the moltn repository
+cargo install --path crates/moltn-cli   # from the moltn repository
 ```
 
 After updating the moltn repository, run the same command again.

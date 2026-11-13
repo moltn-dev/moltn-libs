@@ -32,8 +32,12 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile --filter moltn-guide
+      - id: pages
+        uses: actions/configure-pages@v5
       - run: pnpm --filter moltn-guide build
-      - uses: actions/configure-pages@v5
+        env:
+          # Empty with a custom domain, "/moltn-libs" on moltn-dev.github.io.
+          DOCS_BASE: ${{ steps.pages.outputs.base_path }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: guide/.vitepress/dist

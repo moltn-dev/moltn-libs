@@ -7,6 +7,9 @@ const REPO = 'https://github.com/moltn-dev/moltn-libs'
 // Une page porte le même nom de fichier dans les deux langues : c'est ce qui permet au
 // sélecteur de langue d'arriver sur la page équivalente.
 export default defineConfig({
+  // `/` avec le domaine personnalisé, `/moltn-libs/` sur moltn-dev.github.io : donné par le
+  // workflow de déploiement, pour que le site fonctionne dans les deux cas.
+  base: process.env.DOCS_BASE || '/',
   title: 'moltn',
   description: 'Rust + Inertia, with server-side rendering, shipped as a single binary.',
   // Liens du dépôt (README.md à la racine du guide) : pas des pages du site.

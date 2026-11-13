@@ -1,5 +1,7 @@
 [package]
-name = "moltn"
+# Le crate s'appelle `moltn-cli` ; la commande installée reste `moltn` (voir [[bin]]).
+# Le nom `moltn` est réservé à l'application de gestion de projet.
+name = "moltn-cli"
 version = "0.1.0"
 description = "The moltn command: create, develop, build and check Rust + Inertia applications (Vue, React, Svelte)."
 edition.workspace = true

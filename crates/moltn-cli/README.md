@@ -1,9 +1,9 @@
-# moltn
+# moltn-cli
 
-The `moltn` command: create, develop, build and check a moltn application.
+The `moltn` command: create, develop, build and check a Rust + Inertia application built with the moltn libraries. The crate is named `moltn-cli`; the installed command is `moltn`.
 
 ```bash
-cargo install moltn
+cargo install moltn-cli
 moltn new my-app --front vue   # or react, svelte
 cd my-app
 moltn dev                      # Vite + the Rust app, hot reload, restart on Rust changes

@@ -1712,7 +1712,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "moltn"
+name = "moltn-cli"
 version = "0.1.0"
 dependencies = [
  "anyhow",

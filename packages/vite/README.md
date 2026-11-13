@@ -1,6 +1,6 @@
 # @moltn/vite
 
-Vite plugin for [moltn](https://crates.io/crates/moltn): builds an Inertia v3 server-side rendering bundle that runs **inside a Rust binary** (embedded JavaScript engine, no Node server).
+Vite plugin for [moltn](https://crates.io/crates/moltn-cli): builds an Inertia v3 server-side rendering bundle that runs **inside a Rust binary** (embedded JavaScript engine, no Node server).
 
 ```ts
 import { defineConfig } from 'vite'

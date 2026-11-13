@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/moltn-ssr", "crates/moltn-toolchain", "crates/moltn", "crates/moltn-pages", "crates/moltn-pages-macros", "examples/axum-vue", "examples/axum-react", "examples/axum-svelte", "examples/loco-vue"]
+members = ["crates/moltn-ssr", "crates/moltn-toolchain", "crates/moltn-cli", "crates/moltn-pages", "crates/moltn-pages-macros", "examples/axum-vue", "examples/axum-react", "examples/axum-svelte", "examples/loco-vue"]
 exclude = ["spikes"]
 
 [workspace.package]

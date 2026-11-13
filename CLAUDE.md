@@ -19,7 +19,7 @@ crates/
   moltn-pages/        # scan de pages/, routeur, export des types
   moltn-pages-macros/ # #[page("...")]
   moltn-toolchain/    # détection + exécution de la toolchain JS
-  moltn/              # binaire `moltn` (paquet crates.io `moltn`)
+  moltn-cli/          # binaire `moltn` (paquet crates.io `moltn-cli` ; `moltn` est réservé à l'application)
 packages/
   vite/                # @moltn/vite (plugin Vite + createServer)
 examples/
@@ -37,9 +37,9 @@ cargo fmt --all
 cargo clippy --workspace --all-targets --all-features -- -D warnings
 cargo test --workspace --all-features    # après `pnpm -r build` (les exemples chargent leurs bundles)
 cargo run -p axum-vue                    # exemple (assets et SSR construits)
-cargo run -p moltn -- dev            # depuis examples/axum-vue : Vite + app, HMR
-cargo run -p moltn -- gen --check    # depuis un exemple : moltn.ts à jour ?
-cargo install --path crates/moltn    # installe `moltn` (après chaque changement de la CLI)
+cargo run -p moltn-cli -- dev            # depuis examples/axum-vue : Vite + app, HMR
+cargo run -p moltn-cli -- gen --check    # depuis un exemple : moltn.ts à jour ?
+cargo install --path crates/moltn-cli    # installe `moltn` (après chaque changement de la CLI)
 pnpm --filter moltn-guide build      # site du guide (VitePress, guide/.vitepress/dist) ; `dev` pour l'aperçu
 cargo publish --dry-run --workspace      # avant toute publication (voir docs/release.md)
 cargo test -p moltn-toolchain -- --ignored   # tests réels (Node, pnpm, Vite)

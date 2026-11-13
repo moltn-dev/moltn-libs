@@ -7,7 +7,7 @@ Les messages de moltn sont en anglais ; chaque entrée cite le message, puis l'e
 La CLI n'est pas installée, ou `~/.cargo/bin` n'est pas dans le `PATH` :
 
 ```bash
-cargo install --path crates/moltn   # depuis le dépôt moltn
+cargo install --path crates/moltn-cli   # depuis le dépôt moltn
 ```
 
 Après une mise à jour du dépôt moltn, relancez la même commande.
