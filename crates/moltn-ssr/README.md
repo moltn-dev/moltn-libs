@@ -19,7 +19,7 @@ The bundle is produced by the [`@moltn/vite`](https://www.npmjs.com/package/@mol
 ## Part of moltn
 
 Rust + Inertia v3 (Vue, React, Svelte) with server-side rendering inside the binary.
-Guide (English and French): the `guide/` folder of the moltn repository.
+Guide (English and French): <https://docs.moltn.eu>. Source: <https://github.com/moltn-dev/moltn-libs>.
 
 ## License
 

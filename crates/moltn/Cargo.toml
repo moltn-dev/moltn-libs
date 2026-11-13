@@ -5,6 +5,8 @@ description = "The moltn command: create, develop, build and check Rust + Inerti
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
+repository.workspace = true
+homepage.workspace = true
 keywords = ["inertia", "vite", "cli"]
 categories = ["command-line-utilities", "development-tools"]
 

@@ -1,7 +1,5 @@
 # Guide moltn
 
-*[English version](../en/)*
-
 moltn sert à écrire une application web dont le **serveur est en Rust** (axum) et l'**interface en Vue, React ou Svelte**, reliés par [Inertia](https://inertiajs.com) : pas d'API JSON à concevoir, le serveur choisit une page et lui passe ses données.
 
 Ce que moltn ajoute :
@@ -15,13 +13,13 @@ En production, tout tient dans **un exécutable** : serveur, pages, assets, rend
 
 ## Sommaire
 
-1. [Démarrer](demarrage.md) : installer, créer un projet, le lancer.
+1. [Démarrer](getting-started.md) : installer, créer un projet, le lancer.
 2. [Pages et loaders](pages.md) : routage par fichiers, données serveur, formulaires.
 3. [Types et routes](types.md) : props typées, `route()`, props partagées, `moltn gen`.
-4. [Rendu serveur](rendu-serveur.md) : fonctionnement, règles pour le code des pages, réglages.
+4. [Rendu serveur](server-rendering.md) : fonctionnement, règles pour le code des pages, réglages.
 5. [Commandes](cli.md) : référence de la CLI.
 6. [Production](production.md) : construire et déployer le binaire.
 7. [Avec Loco](loco.md) : brancher moltn dans une application Loco.
-8. [Dépannage](depannage.md) : messages d'erreur courants et solutions.
+8. [Dépannage](troubleshooting.md) : messages d'erreur courants et solutions.
 
 > **État** : moltn est en développement (0.1) et n'est pas encore publié sur crates.io ni npm. Les projets créés par `moltn new` dépendent du dépôt moltn présent sur la machine.

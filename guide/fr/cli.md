@@ -9,7 +9,7 @@ Crée un projet : application Rust, front, page d'accueil et page « À propos �
 | Option | Défaut | Rôle |
 |---|---|---|
 | `--front vue\|react\|svelte` | `vue` | framework du front |
-| `--engine quickjs\|v8` | `quickjs` | moteur du rendu serveur : V8 pour `Intl` (dates et nombres selon la langue), au prix d'environ 55 Mo de binaire. Voir [Rendu serveur](rendu-serveur.md) |
+| `--engine quickjs\|v8` | `quickjs` | moteur du rendu serveur : V8 pour `Intl` (dates et nombres selon la langue), au prix d'environ 55 Mo de binaire. Voir [Rendu serveur](server-rendering.md) |
 
 Installe les dépendances du front (pnpm s'il est présent, sinon npm), puis compile l'application une première fois.
 

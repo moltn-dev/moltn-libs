@@ -12,9 +12,9 @@ Préparée en M6 ; **à lancer par le mainteneur** (comptes crates.io et npm, ac
 
 ## À faire avant de publier
 
-1. **Dépôt public** : renseigner `repository` (et `homepage`) dans `[workspace.package]` du `Cargo.toml` racine, puis `repository.workspace = true` dans chaque crate ; `repository` dans `packages/vite/package.json` ; remplacer la ligne « Guide … the `guide/` folder » des READMEs par le lien du site.
-2. **Nom du crate de la CLI** : `moltn` (décidé ; `cargo install moltn`).
-3. **Site du guide** : `mdbook build guide/fr && mdbook build guide/en`, copier `guide/index.html` dans `guide/book/`, publier `guide/book/` (GitHub Pages ou autre).
+1. **Dépôt public** : fait. `https://github.com/moltn-dev/moltn-libs` ; `repository` et `homepage` hérités de `[workspace.package]`, renseignés dans `packages/vite/package.json`, liens dans les READMEs.
+2. **Nom du crate de la CLI** : `moltn` (décidé ; `cargo install moltn`). *À revoir : une application nommée « moltn » est prévue dans la même organisation ; `moltn-cli` était libre.*
+3. **Site du guide** : fait. VitePress (`guide/`), déployé sur GitHub Pages par `.github/workflows/docs.yml`, domaine `docs.moltn.eu`. Reste côté mainteneur : Settings → Pages → Source « GitHub Actions », domaine personnalisé, et l'enregistrement DNS `CNAME docs → moltn-dev.github.io`.
 
 ## Publier
 

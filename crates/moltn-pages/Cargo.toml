@@ -5,6 +5,8 @@ description = "File-based routing for Inertia (Vue, React, Svelte) on axum, with
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
+repository.workspace = true
+homepage.workspace = true
 keywords = ["inertia", "axum", "routing", "typescript"]
 categories = ["web-programming"]
 

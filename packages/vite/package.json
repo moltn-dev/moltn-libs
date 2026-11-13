@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "description": "Vite plugin for moltn: an SSR bundle that runs in the JavaScript engine embedded in a Rust binary.",
   "license": "MIT OR Apache-2.0",
+  "homepage": "https://docs.moltn.eu",
+  "repository": { "type": "git", "url": "git+https://github.com/moltn-dev/moltn-libs.git", "directory": "packages/vite" },
   "type": "module",
   "exports": {
     ".": {

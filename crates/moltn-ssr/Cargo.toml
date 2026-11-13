@@ -5,6 +5,8 @@ description = "Server-side rendering of Inertia v3 (Vue, React, Svelte) inside t
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
+repository.workspace = true
+homepage.workspace = true
 keywords = ["inertia", "ssr", "quickjs", "vue", "react"]
 categories = ["web-programming"]
 

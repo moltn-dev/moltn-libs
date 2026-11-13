@@ -1,7 +1,11 @@
 packages:
   - packages/*
   - examples/*/web
+  - guide
 
 # pnpm 11 exige une décision pour chaque script d'installation.
 allowBuilds:
   core-js: false
+  # Dépendance de VitePress : son script ne fait que vérifier le binaire, déjà fourni
+  # par le paquet optionnel de la plateforme.
+  esbuild: false

@@ -1,6 +1,6 @@
 # CLAUDE.md — Moltn
 
-Outillage Rust pour Inertia v3 : SSR embarqué dans le binaire, routage par fichiers typé, pilotage de la toolchain JS. Vision et périmètre : `README.md`. Plan : `docs/roadmap.md`.
+Outillage Rust pour Inertia v3 : SSR embarqué dans le binaire, routage par fichiers typé, pilotage de la toolchain JS. Vision et périmètre : `docs/vision.md` (`README.md` est la page publique du dépôt, en anglais). Plan : `docs/roadmap.md`.
 
 ## Principes
 
@@ -8,7 +8,7 @@ Outillage Rust pour Inertia v3 : SSR embarqué dans le binaire, routage par fich
 - **Un jalon à la fois.** Ne pas attaquer un jalon suivant sans qu'on te le demande.
 - **Réutiliser avant d'écrire.** Le protocole Inertia vient de `veer`, le typage de `specta` (ou `ts-rs`, voir roadmap), les versions de Node viennent de proto/mise/Volta. Si une de ces dépendances bloque, le signaler avec un exemple concret avant de la contourner.
 - **Ne rien supposer sur les specs externes.** Pour Inertia v3, `@inertiajs/vite`, `veer`, rquickjs, deno_core : lire la doc officielle ou le code source (inertiajs.com/docs/v3, docs.rs) avant d'implémenter. Les exemples de code de `docs/` sont indicatifs.
-- **Le périmètre de `README.md` fait foi.** Une idée hors périmètre se note dans `docs/ideas.md`, elle ne se code pas.
+- **Le périmètre de `docs/vision.md` fait foi.** Une idée hors périmètre se note dans `docs/ideas.md`, elle ne se code pas.
 - Si une décision de `docs/` semble mauvaise, la signaler et proposer une alternative avant de dévier.
 
 ## Organisation du dépôt
@@ -40,7 +40,7 @@ cargo run -p axum-vue                    # exemple (assets et SSR construits)
 cargo run -p moltn -- dev            # depuis examples/axum-vue : Vite + app, HMR
 cargo run -p moltn -- gen --check    # depuis un exemple : moltn.ts à jour ?
 cargo install --path crates/moltn    # installe `moltn` (après chaque changement de la CLI)
-mdbook build guide/fr && mdbook build guide/en   # site du guide (guide/book/)
+pnpm --filter moltn-guide build      # site du guide (VitePress, guide/.vitepress/dist) ; `dev` pour l'aperçu
 cargo publish --dry-run --workspace      # avant toute publication (voir docs/release.md)
 cargo test -p moltn-toolchain -- --ignored   # tests réels (Node, pnpm, Vite)
 

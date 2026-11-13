@@ -1,7 +1,10 @@
-# moltn
+# moltn guide
 
-**Rust + Inertia, rendu serveur compris, livré en un seul binaire.**
-**Rust + Inertia, with server-side rendering, shipped as a single binary.**
+Sources of the user guide published at <https://docs.moltn.eu>: `en/` (served at the site root) and `fr/` (served under `/fr/`). Keep both languages in sync.
 
-- 🇫🇷 [Guide en français](fr/README.md)
-- 🇬🇧 [English guide](en/README.md)
+```bash
+pnpm --filter moltn-guide dev      # local preview with hot reload
+pnpm --filter moltn-guide build    # static site in guide/.vitepress/dist
+```
+
+The site is deployed to GitHub Pages by `.github/workflows/docs.yml` on every push to `main` that touches `guide/`.

@@ -5,6 +5,8 @@ description = "Detect, resolve and drive a project's JavaScript toolchain (Node,
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
+repository.workspace = true
+homepage.workspace = true
 keywords = ["node", "pnpm", "bun", "deno", "toolchain"]
 categories = ["development-tools"]
 

@@ -2,3 +2,5 @@ target/
 node_modules/
 dist/
 guide/book/
+guide/.vitepress/dist/
+guide/.vitepress/cache/

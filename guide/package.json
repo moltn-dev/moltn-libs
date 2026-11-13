@@ -1,0 +1,14 @@
+{
+  "name": "moltn-guide",
+  "private": true,
+  "type": "module",
+  "description": "moltn user guide (English and French), built with VitePress.",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

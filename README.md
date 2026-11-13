@@ -1,85 +1,70 @@
-# Moltn — Vue, React et Svelte rendus côté serveur par un binaire Rust
+# moltn
 
-> Dossier de specs pour démarrer avec Claude Code.
-> Ordre de lecture : ce README → `CLAUDE.md` → `docs/architecture.md` → `docs/roadmap.md`, puis la spec de la brique en cours.
+**Rust + Inertia, with server-side rendering, shipped as a single binary.**
 
-## En une phrase
+moltn is the tooling that makes a Rust backend (axum, Loco) and a Vue, React or Svelte frontend feel like one project, connected by [Inertia v3](https://inertiajs.com). Think Laravel + Inertia, in Rust, with one thing Laravel does not have: **no Node server in production**. Pages are rendered on the server by a JavaScript engine embedded in your binary.
 
-**Laravel + Inertia, mais en Rust, et livré en un seul binaire sans Node en production.**
+📖 **Documentation: <https://docs.moltn.eu>** ([Français](https://docs.moltn.eu/fr/))
 
-Le backend est en Rust (axum, ou un framework construit dessus). Il choisit une page et lui passe des props typées. Le front est en Vue, React ou Svelte. La première visite reçoit du HTML déjà rendu (SEO, affichage immédiat), puis l'application continue en navigation Inertia classique. Le rendu serveur se fait **dans le binaire**, par un moteur JavaScript embarqué.
+```bash
+moltn new my-app          # Rust app + Vue (or --front react | svelte)
+cd my-app
+moltn dev                 # Vite with hot reload + the Rust app, restarted on change
+moltn build               # one executable: server, pages, assets, server-side rendering
+```
 
-## Pourquoi
+## What you get
 
-L'écosystème Rust a déjà les fondations, mais pas l'outillage qui rend l'ensemble agréable :
+- **Server-side rendering inside the binary.** The first visit gets fully rendered HTML. Two engines: QuickJS (default, about 1 MB) or V8 (`--engine v8`: full `Intl`, several times faster, about 55 MB).
+- **File-based routing.** `web/src/pages/users/[id].vue` answers `/users/42`. Its data comes from an ordinary axum handler annotated with `#[page]`.
+- **Types from Rust to TypeScript.** Props structs become TypeScript types, routes become a typed `route()` helper. Rename a field in Rust and the frontend type check fails.
+- **One command for the JavaScript side.** moltn detects Node, Bun or Deno and npm, pnpm, Yarn or bun, and drives them; it works with proto, mise and Volta.
 
-| Besoin | État en novembre 2026 | Moltn |
-|---|---|---|
-| Protocole Inertia v3 côté serveur | Couvert : `veer` (axum), `ferro-inertia`, `axum-inertia` | On réutilise `veer` |
-| Typage Rust → TypeScript | Couvert : `specta`, `ts-rs`, `typeshare` | On réutilise |
-| Versions de Node/Bun/pnpm… | Couvert : proto, mise, Volta | On délègue |
-| **SSR sans Node en production** | **Absent** : tous les adaptateurs passent par un serveur Node ou Bun | `moltn-ssr` |
-| **Routage par fichiers côté Rust + routes TS typées** | **Absent** | `moltn-pages` |
-| **`cargo run` qui lance aussi Vite, build intégré** | **Partiel** | `moltn-toolchain` + `@moltn/vite` |
+```rust
+#[derive(Serialize, TS)]
+struct UserProps { user: User }
 
-L'équivalent dans l'écosystème Laravel : le serveur SSR d'Inertia, `laravel-vite-plugin` et Ziggy/Wayfinder. Moltn est cette couche, en Rust, avec en plus le binaire unique que même Laravel n'a pas.
+#[moltn_pages::page("users/[id]")]
+async fn user_show(Path(id): Path<u32>, State(app): State<AppState>) -> Result<UserProps, AppError> {
+    Ok(UserProps { user: app.users.find(id).await? })
+}
+```
 
-## Les briques
+```vue
+<script setup lang="ts">
+import type { Pages } from '../../generated/moltn'
+defineProps<Pages['users/[id]']>()
+</script>
+```
 
-| Brique | Type | Rôle |
-|---|---|---|
-| `moltn-ssr` | crate | Moteur JS embarqué (QuickJS par défaut : léger, sans `Intl` ; V8 en option : `Intl` complet, plus rapide, binaire plus lourd) qui rend les pages ; s'intègre à `veer` |
-| `moltn-pages` | crate (+ macro) | Routage par fichiers (`pages/users/[id].vue` → `/users/{id}`), loaders Rust, génération des types TS et d'un `route()` typé |
-| `moltn-toolchain` | crate | Détecte et résout runtime (Node, Bun, Deno) et gestionnaire de paquets (npm, pnpm, Yarn, Bun) ; lance install, build, serveur de dev |
-| `moltn` | binaire | `moltn new`, `moltn dev`, `moltn build`, `moltn gen` : fine couche au-dessus des crates |
-| `@moltn/vite` | paquet npm | Plugin Vite (build SSR adapté au moteur embarqué, régénération des types en dev) + `createServer` compatible |
+## Status
 
-Chaque brique est utilisable seule. `moltn-ssr` ne dépend pas de `moltn-pages`, et `moltn-toolchain` peut servir à n'importe quel outil Rust qui pilote un projet JS.
+Version 0.1, **not yet published** on crates.io or npm: projects created by `moltn new` depend on a local checkout of this repository. Developed and tested on Windows; Linux and macOS are not yet covered by CI. The Inertia protocol itself is provided by [`veer`](https://crates.io/crates/veer).
 
-## Périmètre
+## What is in this repository
 
-**Dedans**
-- Inertia v3, adaptateurs officiels Vue, React, Svelte (client non modifié).
-- SSR embarqué avec repli automatique en rendu client.
-- Routage par fichiers, loaders Rust, types TS générés (props + routes).
-- Détection et résolution de la toolchain JS ; délégation à proto, mise ou Volta.
-- Runtimes de build : Node, Bun, Deno.
-- Intégration axum + `veer` d'abord, puis Loco et Ferro.
-
-**Dehors, définitivement**
-- Nuxt, Next, Remix, SvelteKit, et tout framework qui possède son propre serveur.
-- Un protocole maison à la place d'Inertia.
-- Un bundler maison (Vite fait le travail).
-- Un runtime JS complet capable de remplacer Node.
-- Un framework web complet (ORM, auth, queues…) : Loco et Ferro existent, Moltn s'y branche.
-- Les apps de bureau ou mobiles (Tauri le fait).
-
-**Pas maintenant**
-- Téléchargement direct de Node/Bun par Moltn (la délégation suffit tant que personne ne le réclame).
-- Macro d'actions (POST/PUT/DELETE) liées aux pages : au départ, les mutations sont des routes axum classiques.
-
-## Critère de réussite du projet
-
-> `cargo new`, ajout de Moltn, une page Vue : une app SSR livrée en **un binaire**, en **moins de dix minutes**, sans rien installer à la main en dehors d'un runtime JS pour le build.
-
-Toute fonctionnalité qui ne sert pas cette expérience attend.
-
-## Licence
-
-MIT OR Apache-2.0 (convention de l'écosystème Rust), pour les crates comme pour le paquet npm.
-
-## Sommaire
-
-| Fichier | Contenu |
+| Path | What |
 |---|---|
-| `CLAUDE.md` | Règles de travail pour Claude Code |
-| `docs/architecture.md` | Organisation du dépôt, flux d'une requête, rôle de chaque brique |
-| `docs/moltn-ssr.md` | Moteur SSR embarqué |
-| `docs/moltn-pages.md` | Routage par fichiers et typage de bout en bout |
-| `docs/moltn-toolchain.md` | Détection et pilotage de Node, Bun, Deno et des gestionnaires de paquets |
-| `docs/vite-plugin.md` | Paquet `@moltn/vite` |
-| `docs/integrations.md` | axum + `veer`, Loco, Ferro |
-| `docs/roadmap.md` | Spikes et jalons avec critères d'acceptation |
-| `guide/` | **Guide utilisateur** (fr, en) : démarrer, pages, types, rendu serveur, CLI, production, Loco, dépannage ; site mdBook |
-| `docs/release.md` | Procédure de publication (crates.io, npm) |
-| `docs/config.md` | Proposition : configuration `moltn.toml` (jalon M7, non commencé) |
+| `crates/moltn-ssr` | Embedded server-side rendering (QuickJS or V8), implements `veer::SsrClient` |
+| `crates/moltn-pages`, `crates/moltn-pages-macros` | File-based routing, `#[page]` loaders, TypeScript generation, `moltn.toml` |
+| `crates/moltn-toolchain` | Detects and drives the JavaScript toolchain |
+| `crates/moltn` | The `moltn` command |
+| `packages/vite` | `@moltn/vite`, the Vite plugin that builds the server-side rendering bundle |
+| `examples/` | axum with Vue, React and Svelte; Loco with Vue |
+| `guide/` | User guide, English and French (the documentation site) |
+| `docs/` | Design notes and roadmap (in French) |
+
+## Building from source
+
+Requires Rust 1.99 and Node 22 or later with pnpm.
+
+```bash
+pnpm install
+pnpm -r build                              # npm package, example frontends, guide
+cargo test --workspace --all-features      # after `pnpm -r build`
+cargo install --path crates/moltn          # installs the `moltn` command
+```
+
+## License
+
+MIT OR Apache-2.0.

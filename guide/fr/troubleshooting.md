@@ -27,7 +27,7 @@ allowBuilds:
 
 ### `Node module "fs" is imported by …`
 
-Une page, ou une bibliothèque qu'elle utilise, importe un module Node : il n'existe pas dans le moteur de rendu serveur. Remplacez la bibliothèque, ou ne l'importez que côté navigateur (`onMounted`, `useEffect`, `onMount`). Voir [Rendu serveur](rendu-serveur.md).
+Une page, ou une bibliothèque qu'elle utilise, importe un module Node : il n'existe pas dans le moteur de rendu serveur. Remplacez la bibliothèque, ou ne l'importez que côté navigateur (`onMounted`, `useEffect`, `onMount`). Voir [Rendu serveur](server-rendering.md).
 
 ### `invalid moltn pages: …`
 

@@ -72,5 +72,5 @@ let ssr = EmbeddedSsr::builder(moltn_ssr::embedded_bundle!("../web/dist/ssr/ssr.
 ## Ce qui ne se configure pas ici
 
 - Les conventions de nommage des pages (`[id]`, `[[tab]]`, `[...slug]`, `(groupe)`, `_ignoré`).
-- Les réglages du rendu serveur (nombre de moteurs, délai, mémoire) : ils restent dans le code, voir [Rendu serveur](rendu-serveur.md).
+- Les réglages du rendu serveur (nombre de moteurs, délai, mémoire) : ils restent dans le code, voir [Rendu serveur](server-rendering.md).
 - L'entrée du front et le préfixe des assets : ils s'écrivent encore dans `vite.config.ts` (options de `moltn()`) et dans `main.rs`.
