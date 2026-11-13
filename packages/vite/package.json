@@ -1,0 +1,49 @@
+{
+  "name": "@moltn/vite",
+  "version": "0.1.0",
+  "description": "Vite plugin for moltn: an SSR bundle that runs in the JavaScript engine embedded in a Rust binary.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "typecheck": "tsc -p . --noEmit",
+    "test": "node --test test/*.test.mjs",
+    "prepack": "tsc -p ."
+  },
+  "dependencies": {
+    "core-js": "^3.51.0"
+  },
+  "peerDependencies": {
+    "@inertiajs/vite": "^3.11.0",
+    "vite": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  },
+  "keywords": [
+    "vite",
+    "inertia",
+    "ssr",
+    "rust",
+    "quickjs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

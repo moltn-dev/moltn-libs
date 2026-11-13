@@ -1,0 +1,33 @@
+[package]
+name = "moltn-toolchain"
+version = "0.1.0"
+description = "Detect, resolve and drive a project's JavaScript toolchain (Node, Bun, Deno; npm, pnpm, Yarn, bun) from Rust."
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+keywords = ["node", "pnpm", "bun", "deno", "toolchain"]
+categories = ["development-tools"]
+
+[dependencies]
+semver = { version = "1", features = ["serde"] }
+serde = { workspace = true }
+serde_json.workspace = true
+thiserror.workspace = true
+# Fichiers .prototools et mise.toml.
+toml = "1"
+tokio = { workspace = true, features = ["process", "io-util", "net", "time", "rt"] }
+tracing.workspace = true
+# Recherche des binaires dans le PATH, y compris les shims .cmd de Windows.
+which = "8"
+
+[target.'cfg(unix)'.dependencies]
+# Groupes de processus : tuer Vite et ses enfants d'un coup.
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+# Job Objects : les enfants meurent avec le processus parent, même tué brutalement.
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_System_JobObjects", "Win32_System_Threading", "Win32_Security"] }
+
+[dev-dependencies]
+tempfile = "3"
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

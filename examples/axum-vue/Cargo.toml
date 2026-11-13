@@ -1,0 +1,32 @@
+[package]
+name = "axum-vue"
+version = "0.0.0"
+description = "Exemple moltn : axum + veer + Vue, rendu serveur embarqué."
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+anyhow = "1"
+axum.workspace = true
+moltn-pages = { path = "../../crates/moltn-pages" }
+moltn-ssr.workspace = true
+# Assets du front embarqués en release, lus sur le disque en debug.
+rust-embed = "8"
+serde.workspace = true
+serde_json.workspace = true
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "net"] }
+tracing.workspace = true
+# Types TypeScript des props (`#[derive(TS)]`), même version que moltn-pages.
+ts-rs = "12"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# `ssr` : client HTTP vers le rendu serveur de dev de Vite (`moltn dev`).
+veer = { workspace = true, features = ["axum", "embed", "ssr"] }
+
+[build-dependencies]
+# Seul le scan des pages sert au build.rs : pas besoin du runtime (axum, veer, ts-rs).
+moltn-pages = { path = "../../crates/moltn-pages", default-features = false }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }

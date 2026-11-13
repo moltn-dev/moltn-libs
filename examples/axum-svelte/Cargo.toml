@@ -1,0 +1,25 @@
+[package]
+name = "axum-svelte"
+version = "0.0.0"
+description = "Exemple moltn : axum + veer + Svelte, rendu serveur embarqué."
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+anyhow = "1"
+axum.workspace = true
+moltn-ssr.workspace = true
+# Assets du front embarqués en release, lus sur le disque en debug.
+rust-embed = "8"
+serde.workspace = true
+serde_json.workspace = true
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "net"] }
+tracing.workspace = true
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# `ssr` : client HTTP vers le rendu serveur de dev de Vite (`moltn dev`).
+veer = { workspace = true, features = ["axum", "embed", "ssr"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }

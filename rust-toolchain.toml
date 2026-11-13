@@ -1,0 +1,4 @@
+# MSRV : aligné sur `rust-version` du workspace.
+[toolchain]
+channel = "1.99"
+components = ["rustfmt", "clippy"]

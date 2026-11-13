@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = ["crates/moltn-ssr", "crates/moltn-toolchain", "crates/moltn", "crates/moltn-pages", "crates/moltn-pages-macros", "examples/axum-vue", "examples/axum-react", "examples/axum-svelte", "examples/loco-vue"]
+exclude = ["spikes"]
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.99"
+license = "MIT OR Apache-2.0"
+
+[workspace.dependencies]
+moltn-ssr = { path = "crates/moltn-ssr", version = "0.1.0" }
+async-trait = "0.1"
+axum = "0.8"
+metrics = "0.24"
+rquickjs = "0.14"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["sync"] }
+tracing = "0.1"
+veer = { version = "0.3", default-features = false }

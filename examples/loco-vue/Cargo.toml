@@ -1,0 +1,30 @@
+[package]
+name = "loco-vue"
+version = "0.0.0"
+description = "Exemple moltn : Loco + Vue, pages par fichiers et rendu serveur embarqué."
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+anyhow = "1"
+async-trait.workspace = true
+axum.workspace = true
+# Sans base de données ni CLI Loco : l'application démarre avec `cargo run` (donc `moltn dev`).
+loco-rs = { version = "1.3", default-features = false }
+moltn-pages = { path = "../../crates/moltn-pages" }
+moltn-ssr.workspace = true
+rust-embed = "8"
+serde.workspace = true
+serde_json.workspace = true
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "net"] }
+ts-rs = "12"
+veer = { workspace = true, features = ["axum", "embed", "ssr"] }
+
+[build-dependencies]
+# Seul le scan des pages sert au build.rs : pas besoin du runtime (axum, veer, ts-rs).
+moltn-pages = { path = "../../crates/moltn-pages", default-features = false }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }

@@ -1,0 +1,7 @@
+packages:
+  - packages/*
+  - examples/*/web
+
+# pnpm 11 exige une décision pour chaque script d'installation.
+allowBuilds:
+  core-js: false

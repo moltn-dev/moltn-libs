@@ -1,0 +1,13 @@
+# Minimal Loco configuration (no database).
+logger:
+  enable: true
+  pretty_backtrace: true
+  level: info
+  format: compact
+server:
+  port: 5150
+  binding: 127.0.0.1
+  host: http://localhost
+  middlewares: {}
+workers:
+  mode: ForegroundBlocking

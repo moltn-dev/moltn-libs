@@ -1,0 +1,24 @@
+[package]
+name = "moltn"
+version = "0.1.0"
+description = "The moltn command: create, develop, build and check Rust + Inertia applications (Vue, React, Svelte)."
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+keywords = ["inertia", "vite", "cli"]
+categories = ["command-line-utilities", "development-tools"]
+
+[[bin]]
+name = "moltn"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+# Scan des pages et mise à jour immédiate de moltn.ts, sans le runtime (axum, veer, ts-rs).
+moltn-pages = { path = "../moltn-pages", version = "0.1.0", default-features = false }
+moltn-toolchain = { path = "../moltn-toolchain", version = "0.1.0" }
+serde_json.workspace = true
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "signal", "process"] }
+tracing.workspace = true
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

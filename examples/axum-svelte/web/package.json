@@ -1,0 +1,22 @@
+{
+  "name": "axum-svelte-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vite build --ssr",
+    "typecheck": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings"
+  },
+  "dependencies": {
+    "@inertiajs/svelte": "^3.11.0",
+    "svelte": "^5.57.3"
+  },
+  "devDependencies": {
+    "@inertiajs/vite": "^3.11.0",
+    "@moltn/vite": "workspace:*",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "svelte-check": "^4.7.8",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.8"
+  }
+}

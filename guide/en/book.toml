@@ -1,0 +1,12 @@
+[book]
+title = "moltn — guide"
+language = "en"
+src = "."
+
+[build]
+build-dir = "../book/en"
+create-missing = false
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "ayu"

@@ -1,0 +1,36 @@
+[package]
+name = "moltn-ssr"
+version = "0.1.0"
+description = "Server-side rendering of Inertia v3 (Vue, React, Svelte) inside the Rust process, with an embedded JavaScript engine."
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+keywords = ["inertia", "ssr", "quickjs", "vue", "react"]
+categories = ["web-programming"]
+
+[features]
+default = ["veer", "quickjs"]
+## QuickJS engine: small binary, builds everywhere. No `Intl` (ECMA-402).
+quickjs = ["dep:rquickjs"]
+## V8 engine: full `Intl` (ICU data included) and higher throughput; adds tens of MB
+## to the binary and needs one of V8's prebuilt targets.
+v8 = ["dep:v8", "dep:deno_core_icudata"]
+## Implements `veer::SsrClient` for `EmbeddedSsr`.
+veer = ["dep:veer", "dep:async-trait"]
+
+[dependencies]
+async-trait = { workspace = true, optional = true }
+metrics.workspace = true
+rquickjs = { workspace = true, optional = true }
+# Moteur V8 (feature `v8`) : liaisons Rust officielles de Deno, et les données ICU
+# correspondantes pour `Intl`.
+v8 = { version = "152", optional = true }
+deno_core_icudata = { version = "0.78", optional = true }
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+veer = { workspace = true, optional = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "time"] }
